@@ -17,7 +17,8 @@ COPY . .
 EXPOSE 5000
 
 # konteyner çalışınca bu komutu çalıştırıyoruz
-CMD ["python", "app.py"]
+#cmd satırını daha esnek olması için guncelledim 
+CMD ["sh", "-c", "python app.py"]
 
 #her kod değişikliginden sonra konteynırı durdurup tekrar image build edip çalıstırmamız gerekır 
 #şu an bunu elle yapıyorum manuel olarak ama
