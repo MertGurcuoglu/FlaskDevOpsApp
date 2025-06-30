@@ -5,4 +5,4 @@ def test_index():
     response = tester.get('/')
     content=response.data.decode('utf-8')
     assert response.status_code == 200
-    assert b"Merhaba ben Mert Gürcüoğlu" in response.data
+    assert "Merhaba ben Mert Gürcüoğlu" in content
