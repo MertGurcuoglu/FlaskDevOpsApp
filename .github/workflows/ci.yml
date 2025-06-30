@@ -14,11 +14,16 @@ jobs:
     - name: Repo dosyalarını çek
       uses: actions/checkout@v3  #checkout repo dosyalarını ubuntu makinesine indiriyor
 
-    - name: Docker kurulu mu diye kontrol et
-      run: docker --version
+    - name: python kurulumu
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+#bu sefer eklememız uygulama sadece calısıyor mu dıye bakmak degıl dogru calısıyormu 
+#dıye bakmak ıcın yanı test ıcın
+    - name: Gerekli kütüphaneleri yükle
+      run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Docker image build et
-      run: docker build -t flask-devops-app . #dockerfile üzerinden image oluşturuyor
-
-    - name: Container çalışıyor mu kontrol et
-      run: docker run -d -p 5000:5000 flask-devops-app #ardından da çalışıyor mu diye kontrol ediyor 
+    - name: Testleri çalıştır
+      run: pytest
