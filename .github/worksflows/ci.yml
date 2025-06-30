@@ -1,6 +1,6 @@
 name: CI - FlaskDevOpsDeploy
 
-on: #main bransı push old calısacak 
+on: #main bransı push oldugunda calısacak 
   push:
     branches: [ main ]
   pull_request:
