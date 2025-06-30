@@ -1,0 +1,24 @@
+name: CI - FlaskDevOpsDeploy
+
+on: #main bransı push old calısacak 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest #bu sanal bir ubuntu makinesi github ın bize verdiği
+
+    steps:
+    - name: Repo dosyalarını çek
+      uses: actions/checkout@v3  #checkout repo dosyalarını ubuntu makinesine indiriyor
+
+    - name: Docker kurulu mu diye kontrol et
+      run: docker --version
+
+    - name: Docker image build et
+      run: docker build -t flask-devops-app . #dockerfile üzerinden image oluşturuyor
+
+    - name: Container çalışıyor mu kontrol et
+      run: docker run -d -p 5000:5000 flask-devops-app #ardından da çalışıyor mu diye kontrol ediyor 
