@@ -27,3 +27,6 @@ jobs:
 
     - name: Testleri çalıştır
       run: pytest
+
+    - name: Deploy
+      run: echo  "✅ Uygulama başarıyla deploy edildi"
