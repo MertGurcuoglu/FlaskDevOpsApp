@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-latest #bu sanal bir ubuntu makinesi github ın bize verdiği
 
     steps:
-    - name: Repo dosyalarını çek
-      uses: actions/checkout@v3  #checkout repo dosyalarını ubuntu makinesine indiriyor
+      - name: Repo dosyalarını çek
+        uses: actions/checkout@v3  #checkout repo dosyalarını ubuntu makinesine indiriyor
 
-    - name: python kurulumu
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
+      - name: python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 #bu sefer eklememız uygulama sadece calısıyor mu dıye bakmak degıl dogru calısıyormu 
 #dıye bakmak ıcın yanı test ıcın
-    - name: Gerekli kütüphaneleri yükle
-      run: |
+      - name: Gerekli kütüphaneleri yükle
+        run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-    - name: Testleri çalıştır
-      run: pytest
+      - name: Testleri çalıştır
+        run: pytest
 
-    - name: Deploy
-      run: echo  "✅ Uygulama başarıyla deploy edildi"
+      - name: Deploy
+        run: echo  "✅ Uygulama başarıyla deploy edildi"
