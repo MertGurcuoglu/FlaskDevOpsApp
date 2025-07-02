@@ -1,6 +1,6 @@
 name: CI - FlaskDevOpsDeploy
 
-on: #main bransı push oldugunda calısacak 
+on:
   push:
     branches: [ main ]
   pull_request:
@@ -8,25 +8,46 @@ on: #main bransı push oldugunda calısacak
 
 jobs:
   build:
-    runs-on: ubuntu-latest #bu sanal bir ubuntu makinesi github ın bize verdiği
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: devuser
+          POSTGRES_PASSWORD: devpass
+          POSTGRES_DB: devdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
-      - name: Repo dosyalarını çek
-        uses: actions/checkout@v3  #checkout repo dosyalarını ubuntu makinesine indiriyor
+    - name: Repo dosyalarını çek
+      uses: actions/checkout@v3
 
-      - name: python kurulumu
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-#bu sefer eklememız uygulama sadece calısıyor mu dıye bakmak degıl dogru calısıyormu 
-#dıye bakmak ıcın yanı test ıcın
-      - name: Gerekli kütüphaneleri yükle
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+    - name: Python kurulumu
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
 
-      - name: Testleri çalıştır
-        run: pytest
+    - name: Gerekli kütüphaneleri yükle
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      - name: Deploy
-        run: echo  "✅ Uygulama başarıyla deploy edildi"
+    - name: Testleri çalıştır
+      env:
+        DB_HOST: localhost
+        DB_NAME: devdb
+        DB_USER: devuser
+        DB_PASS: devpass
+        DB_PORT: 5432
+        PORT: 5000
+      run: pytest
+
+    - name: Deploy
+      run: echo "✅ Uygulama başarıyla deploy edildi"
