@@ -35,5 +35,7 @@ def index():
     return f"<h1>Bu sayfa {count} kez ziyaret edildi.</h1>"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
-
+    # Test sırasında bu kısım çalışmasın
+    import os
+    if os.getenv("FLASK_ENV") != "testing":
+        app.run(host='0.0.0.0', port=5000)

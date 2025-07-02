@@ -49,6 +49,7 @@ jobs:
 
     - name: Testleri çalıştır
       env:
+        FLASK_ENV: testing
         DB_HOST: postgres
         DB_NAME: devdb
         DB_USER: devuser
