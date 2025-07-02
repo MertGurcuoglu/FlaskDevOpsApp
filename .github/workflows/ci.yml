@@ -49,7 +49,7 @@ jobs:
 
     - name: Testleri çalıştır
       env:
-        DB_HOST: localhost
+        DB_HOST: postgres
         DB_NAME: devdb
         DB_USER: devuser
         DB_PASS: devpass
