@@ -4,5 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "5000:5000"
+      - ${PORT}:${PORT}
     container_name: flask-devops-app
+    env_file:
+      - .env
