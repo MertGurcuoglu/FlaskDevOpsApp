@@ -4,3 +4,4 @@ pytest
 
 # PostgreSQL için
 psycopg2-binary
+pytest-cov  # test coverage ölçmek için

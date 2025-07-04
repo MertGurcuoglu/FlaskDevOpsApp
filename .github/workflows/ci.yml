@@ -56,7 +56,8 @@ jobs:
         DB_PASS: devpass
         DB_PORT: 5432
         PORT: 5000
-      run: pytest
+      run: |
+        pytest --cov=app --cov-report=term-missing
 
     - name: Deploy
       run: echo "✅ Uygulama başarıyla deploy edildi"
