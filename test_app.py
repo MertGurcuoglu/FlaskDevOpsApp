@@ -33,12 +33,11 @@ class FlaskTestCase(unittest.TestCase):
         self.assertIn("Bu sayfa 1 kez ziyaret edildi.", response.data.decode("utf-8"))
 
 #monıtorıng testı
-            def test_health_check(self):
+    def test_health_check(self):
         tester = app.test_client()
         response = tester.get('/health')
         self.assertEqual(response.status_code, 200)
         self.assertIn("ok", response.get_data(as_text=True))
-
 
 if __name__ == '__main__':
     unittest.main()

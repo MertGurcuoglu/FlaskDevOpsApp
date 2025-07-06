@@ -57,6 +57,7 @@ def index():
 
 
     #monıtorıng kısmı
+@app.route('/health')    
 def health():
     try:
         if cursor:
