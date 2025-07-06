@@ -15,7 +15,6 @@ logging.basicConfig(
     ]
 )
 
-
 # Test ortamı değilse veritabanına bağlan
 if os.getenv("FLASK_ENV") != "testing":
     while True:
@@ -49,22 +48,8 @@ def index():
             count = 1
             cursor.execute("INSERT INTO visits (count) VALUES (1);")
         conn.commit()
-        return f"<h1>Bu sayfa {count} kez ziyaret edildi.</h1>"
-    else:
-        return "<h1>Test modunda çalışıyor.</h1>"
-
-if __name__ == '__main__':
-    if os.getenv("FLASK_ENV") != "testing":
-        app.run(host='0.0.0.0', port=5000)
-
-@app.route('/')
-def index():
-    logging.info("Ana sayfa endpoint'ine istek geldi.")
-    if cursor:
-        logging.info("Veritabanı bağlantısı aktif.")
-        ...
         logging.info(f"Ziyaret sayısı: {count}")
-        ...
+        return f"<h1>Bu sayfa {count} kez ziyaret edildi.</h1>"
     else:
         logging.info("Test modunda çalışıyor.")
         return "<h1>Test modunda çalışıyor.</h1>"
