@@ -47,9 +47,24 @@ def index():
         else:
             count = 1
             cursor.execute("INSERT INTO visits (count) VALUES (1);")
-        conn.commit()
+        conn.commit()    
+        #loggıng kısmı 
         logging.info(f"Ziyaret sayısı: {count}")
         return f"<h1>Bu sayfa {count} kez ziyaret edildi.</h1>"
     else:
         logging.info("Test modunda çalışıyor.")
         return "<h1>Test modunda çalışıyor.</h1>"
+
+
+    #monıtorıng kısmı
+def health():
+    try:
+        if cursor:
+            cursor.execute("SELECT 1;")  # basit bir sorgu
+            return {"status": "ok", "database": "reachable"}, 200
+        else:
+            return {"status": "ok", "database": "test-mode"}, 200
+    except Exception as e:
+        logging.error(f"Health check failed: {e}")
+        return {"status": "error", "message": str(e)}, 500
+
