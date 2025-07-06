@@ -2,8 +2,19 @@ import os
 import time
 import psycopg2
 from flask import Flask
+import logging
+
 
 app = Flask(__name__)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
+
 
 # Test ortamı değilse veritabanına bağlan
 if os.getenv("FLASK_ENV") != "testing":
@@ -45,3 +56,15 @@ def index():
 if __name__ == '__main__':
     if os.getenv("FLASK_ENV") != "testing":
         app.run(host='0.0.0.0', port=5000)
+
+@app.route('/')
+def index():
+    logging.info("Ana sayfa endpoint'ine istek geldi.")
+    if cursor:
+        logging.info("Veritabanı bağlantısı aktif.")
+        ...
+        logging.info(f"Ziyaret sayısı: {count}")
+        ...
+    else:
+        logging.info("Test modunda çalışıyor.")
+        return "<h1>Test modunda çalışıyor.</h1>"
