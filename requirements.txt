@@ -1,1 +1,7 @@
+# Flask ve test framework
 Flask==2.3.3
+pytest
+
+# PostgreSQL için
+psycopg2-binary
+pytest-cov  # test coverage ölçmek için
