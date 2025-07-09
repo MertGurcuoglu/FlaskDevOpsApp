@@ -26,16 +26,15 @@ Bu proje, Flask tabanlı bir web uygulaması için CI/CD sürecini öğrenmek ve
 
 ## Yapı
 
-├── app.py # Flask uygulaması
-├── test_app.py # Birim test dosyası
-├── requirements.txt # Bağımlılıklar
-├── Dockerfile # Flask container için yapılandırma
-├── docker-compose.yml # Uygulama + DB servisi
-├── .env # Ortam değişkenleri (DB config)
-├── .gitignore # Git’e eklenmemesi gereken dosyalar
-└── .github/
-└── workflows/
-└── ci.yml # GitHub Actions yapılandırması
+-  app.py # Flask uygulaması
+-  test_app.py # Birim test dosyası
+-  requirements.txt # Bağımlılıklar
+-   Dockerfile # Flask container için yapılandırma
+-   docker-compose.yml # Uygulama + DB servisi
+-   .env # Ortam değişkenleri (DB config)
+-   .gitignore # Git’e eklenmemesi gereken dosyalar
+-   .github/workflows/ci.yml # GitHub Actions yapılandırması
+
 
 
 ## Test
